@@ -37,6 +37,8 @@ jobs:
         # SSH command to deploy using Docker Compose
         ssh $USERNAME@$HOST '
           cd laravel_with_docker
+          git fetch --all
+          git reset --hard origin/main
           git pull
           docker compose down
           docker compose up -d --build
