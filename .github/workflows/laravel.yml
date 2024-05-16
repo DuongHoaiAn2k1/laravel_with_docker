@@ -33,8 +33,8 @@ jobs:
         scp -r $(pwd) $USERNAME@$HOST:/laravel_with_docker
         ssh $USERNAME@$HOST '
           cd laravel_with_docker
-          docker-compose down
-          docker-compose up --build
+          docker compose down
+          docker compose up --build
         '
 
     - name: Check deployment status
@@ -44,6 +44,6 @@ jobs:
       run: |
         ssh $USERNAME@$HOST '
           cd laravel_with_docker
-          docker-compose logs
-          docker-compose ps
+          docker compose logs
+          docker compose ps
         '
