@@ -16,18 +16,17 @@ jobs:
 
     - name: Disable Xdebug
       run: sudo phpdismod xdebug || echo "Xdebug not available, skipping disable step."
-
+      
     - name: Deploy to host
       env:
-        HOST: ${{ secrets.HOST }}
-        USERNAME: ${{ secrets.USERNAME }}
-        KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        HOST: ${{secrets.HOST}}
+        USERNAME: ${{secrets.USERNAME}}
+        KEY: ${{secrets.SSH_PRIVATE_KEY}}
       run: |
         mkdir -p ~/.ssh
         echo "$KEY" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
         ssh-keyscan -H $HOST >> ~/.ssh/known_hosts
-        ssh -vvv $USERNAME@$HOST 'command_to_run'
         scp -r $(pwd) $USERNAME@$HOST:/laravel_with_docker
         ssh $USERNAME@$HOST '
           cd laravel_with_docker
