@@ -27,10 +27,10 @@ jobs:
         echo "$KEY" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
         ssh-keyscan -H $HOST >> ~/.ssh/known_hosts
-        # Set ServerAliveInterval to keep the connection alive
+        # Use ssh options directly in the command
         echo "ServerAliveInterval 60" >> ~/.ssh/config
-        scp -r $(pwd) $USERNAME@$HOST:/laravel_with_docker
-        ssh -o ServerAliveInterval=60 $USERNAME@$HOST '
+        scp -o StrictHostKeyChecking=no -r $(pwd) $USERNAME@$HOST:/laravel_with_docker
+        ssh -o StrictHostKeyChecking=no -o ServerAliveInterval=60 $USERNAME@$HOST '
         ssh $USERNAME@$HOST '
           cd laravel_with_docker
           docker compose up -d --build
