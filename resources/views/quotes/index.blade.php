@@ -16,7 +16,7 @@
 
 <body>
     <div class="wrapper">
-        <h1>Top Quotes !!! 13</h1>
+        <h1>Top Quotes !!! 132</h1>
         <table class="table table-striped table-hover table-bordered">
             <thead>
                 <tr>
