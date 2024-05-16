@@ -55,6 +55,7 @@ RUN chmod +x /var/www/docker-start.sh
 RUN addgroup -g 1000 appuser && \
     adduser -D -u 1000 -G appuser appuser
 RUN chown -R appuser:appuser /var/www
+RUN chmod 644 /var/www/.env
 
 USER appuser
 CMD ["/var/www/docker/php/docker-start.sh"]
