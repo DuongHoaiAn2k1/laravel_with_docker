@@ -27,6 +27,6 @@ jobs:
         scp -r $(pwd) $USERNAME@$HOST:/laravel_with_docker
         ssh $USERNAME@$HOST '
           cd laravel_with_docker
-          docker-compose down
-          docker-compose up -d
+          docker compose down
+          docker compose up --build
         '
