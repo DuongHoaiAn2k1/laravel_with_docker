@@ -7,26 +7,43 @@ on:
     branches: [ "main" ]
 
 jobs:
-   deploy:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
-    - name: Deploy to host
+    - name: Set up SSH keys and known hosts
       env:
         HOST: ${{ secrets.HOST }}
         USERNAME: ${{ secrets.USERNAME }}
         KEY: ${{ secrets.SSH_PRIVATE_KEY }}
       run: |
         mkdir -p ~/.ssh
-        echo "$KEY" > ~/.ssh/id_rsa
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
         ssh-keyscan -H $HOST >> ~/.ssh/known_hosts
+
+    - name: Deploy application
+      env:
+        HOST: ${{ secrets.HOST }}
+        USERNAME: ${{ secrets.USERNAME }}
+      run: |
         scp -r $(pwd) $USERNAME@$HOST:/laravel_with_docker
         ssh $USERNAME@$HOST '
           cd laravel_with_docker
-          docker compose down
-          docker compose up --build
+          docker-compose down
+          docker-compose up --build
+        '
+
+    - name: Check deployment status
+      env:
+        HOST: ${{ secrets.HOST }}
+        USERNAME: ${{ secrets.USERNAME }}
+      run: |
+        ssh $USERNAME@$HOST '
+          cd laravel_with_docker
+          docker-compose logs
+          docker-compose ps
         '
