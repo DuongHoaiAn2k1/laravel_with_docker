@@ -16,21 +16,6 @@ jobs:
 
       - name: Disable Xdebug
         run: sudo phpdismod xdebug || echo "Xdebug not available, skipping disable step."
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: "8.3"
-          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick
-          coverage: none
-
-      - name: Install Composer dependencies
-        uses: actions/cache@v3
-        with:
-          path: vendor
-          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-          restore-keys: ${{ runner.os }}-composer-
-      - name: Install Composer dependencies
-        run: composer install --no-interaction --no-progress --prefer-dist
 
       - name: Run Unit Tests
         run: vendor/bin/phpunit
