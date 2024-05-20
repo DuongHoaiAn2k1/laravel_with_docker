@@ -17,7 +17,7 @@ class ExampleTest extends TestCase
     public function it_adds_two_numbers()
     {
         $a = 1;
-        $b = 2;
+        $b = 5;
         $this->assertEquals(3, $a + $b);
     }
 }
