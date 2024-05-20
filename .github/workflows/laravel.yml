@@ -13,7 +13,10 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-
+      
+    - name: Run Tests
+      run: vendor/bin/phpunit
+      
     - name: Disable Xdebug
       run: sudo phpdismod xdebug || echo "Xdebug not available, skipping disable step."
       
