@@ -34,6 +34,8 @@ services:
       MARIADB_DATABASE: db_app 
       MARIADB_USER: root 
       MARIADB_PASSWORD: app
+    depends_on:
+      - db
 
   nginx:
     container_name: nginx-service
