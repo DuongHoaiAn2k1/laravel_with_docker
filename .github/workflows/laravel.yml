@@ -24,6 +24,7 @@ jobs:
 
       - name: Run Unittest
         run: vendor/bin/phpunit
+
   deploy:
     needs: build
     runs-on: ubuntu-latest
@@ -45,14 +46,11 @@ jobs:
           echo "$KEY" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H $HOST >> ~/.ssh/known_hosts
-          # Add configuration options directly to SSH config
           echo "Host *" >> ~/.ssh/config
           echo "    StrictHostKeyChecking no" >> ~/.ssh/config
           echo "    ServerAliveInterval 60" >> ~/.ssh/config
           echo "    IdentityFile ~/.ssh/id_rsa" >> ~/.ssh/config
-          # SCP command to copy project directory
           scp -r $(pwd) $USERNAME@$HOST:/laravel_with_docker
-          # SSH command to deploy using Docker Compose
           ssh $USERNAME@$HOST '
             cd laravel_with_docker
             git fetch --all
