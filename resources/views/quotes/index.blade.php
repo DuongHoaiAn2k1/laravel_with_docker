@@ -1,4 +1,4 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
@@ -42,9 +42,9 @@
     </script>
 </body>
 
-</html> -->
+</html>
 
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -58,4 +58,4 @@
     <h1>Tôi sinh năm 2002</h1>
 </body>
 
-</html>
+</html> -->
