@@ -20,7 +20,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: "8.1" # Thay đổi phiên bản PHP nếu cần
+          php-version: "8.3" # Thay đổi phiên bản PHP nếu cần
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, gd, imagick # thêm các extension cần thiết
           tools: composer:v2
 
