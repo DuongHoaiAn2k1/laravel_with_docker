@@ -13,11 +13,11 @@ class ExampleTest extends TestCase
     // {
     //     $this->assertTrue(true);
     // }
-    // /** @test */
-    // public function it_adds_two_numbers()
-    // {
-    //     $a = 1;
-    //     $b = 2;
-    //     $this->assertEquals(3, $a + $b);
-    // }
+    /** @test */
+    public function it_adds_two_numbers()
+    {
+        $a = 1;
+        $b = 2;
+        $this->assertEquals(3, $a + $b);
+    }
 }
