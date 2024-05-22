@@ -69,6 +69,15 @@ services:
             - redis-data:/data
         networks:
             - network-app
+    cron:
+        container_name: laravel_cron
+        build:
+            context: .
+            dockerfile: docker/cron/Dockerfile.cron
+        volumes:
+            - ./:/var/www
+        depends_on:
+            - php-fpm
 
 volumes:
     db-store:

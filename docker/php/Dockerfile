@@ -51,10 +51,13 @@ COPY --from=composer /usr/bin/composer /usr/bin/composer
 COPY docker-start.sh /var/www/
 RUN chmod +x /var/www/docker-start.sh
 
+
 # Create and switch to a less privileged user
 RUN addgroup -g 1000 appuser && \
     adduser -D -u 1000 -G appuser appuser
 RUN chown -R appuser:appuser /var/www
 
 USER appuser
+
+
 CMD ["/var/www/docker/php/docker-start.sh"]
